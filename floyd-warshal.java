@@ -1,4 +1,3 @@
-import java.util.Arrays;
 
 public class FloydWarshall {
     static final int INF = 99999;
@@ -7,8 +6,20 @@ public class FloydWarshall {
         int n = graph.length;
         int[][] dist = new int[n][n];
 
-        for (int i = 0; i < n; i++) {
-            dist[i] = Arrays.copyOf(graph[i], n);
+        for (int i = 0; i < n; i++) 
+        {
+            for (int j=0; j < n; j++) 
+            {
+                if (i == j) {
+                    dist[i][j] = 0;
+                } 
+                else if (graph[i][j] != 0) {
+                    dist[i][j] = graph[i][j];
+                } 
+                else {
+                    dist[i][j] = INF;
+                }
+            }
         }
 
         for (int k = 0; k < n; k++) {  
